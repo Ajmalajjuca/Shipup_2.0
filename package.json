@@ -1,0 +1,30 @@
+{
+  "name": "logistics-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "frontend/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "setup": "npm install && npm run install:services",
+    "install:services": "npm install --workspaces",
+    "dev": "concurrently \"npm run dev:gateway\" \"npm run dev:auth\" \"npm run dev:redis\"",
+    "dev:gateway": "npm run dev --workspace=services/api-gateway",
+    "dev:auth": "npm run dev --workspace=services/auth-service",
+    "dev:redis": "docker run --rm -p 6379:6379 redis:7-alpine",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "lint-staged": "^14.0.1"
+  }
+}
