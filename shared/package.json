@@ -1,0 +1,11 @@
+{
+  "name": "@logistics/shared",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "winston": "^3.10.0"
+  }
+}
